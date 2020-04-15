@@ -4,7 +4,7 @@
     <input type="vorname"
     name="vorname"
     v-model="vorname"
-    placeholder="Vorname"/>
+    placeholder="Vorrname"/>
     <br>
     <input type="name"
     name="name"
