@@ -4,24 +4,39 @@
         <p>
             This is a secure area
         </p>
-        <li>{{vorname}}</li>
-        <li>{{name}}</li>
-        <li>{{email}}</li>
+
+        <div v-for="(value, name) in credentials[0]" v-bind:key="value">
+            {{ name }}: {{ value }}
+        </div>
+        <li>{{this.userid}}</li>
+        
     </div>
 </template>
 
 <script>
+
+// import Login from './Login';
+import { integer } from 'vee-validate/dist/rules';
+
     export default {
         name: 'secure',
-        data() {
-            
+        data() { 
             return {
-                name: localStorage.name,
-                vorname: localStorage.vorname,
-                email: localStorage.email
+                credentials: [],
+                userid: integer
+
             };
-        }
+        },
+    created () {
+    const credentials = JSON.parse(localStorage.getItem('credentials'))
+    if (credentials !== null) {
+      for (const cr of credentials) {
+        this.credentials.push(cr)
+        this.userid=1
+      }
     }
+  }
+}
 </script>
 
 <style scoped>

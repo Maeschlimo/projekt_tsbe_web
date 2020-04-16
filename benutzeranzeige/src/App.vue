@@ -1,9 +1,10 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link v-if="authenticated" to="/home" replace>Home</router-link> |
-      <router-link v-if="authenticated" to="/about"  replace>About</router-link> |
-      <router-link v-if="authenticated" to="/login" v-on:click.native="logout()" replace>Logout</router-link>
+      <router-link v-if="authenticated" to="/home" replace> Home |</router-link > 
+      <router-link v-if="authenticated" to="/about"  replace> About |</router-link> 
+      <router-link v-if="authenticated" to="/secure"  replace> Secure |</router-link> 
+      <router-link v-if="authenticated" to="/login" v-on:click.native="logout()" replace> Logout </router-link>
     </div>
     <router-view @authenticated="setAuthenticated" />
   </div>
@@ -15,17 +16,12 @@
         data() {
             return {
                 authenticated: false,
-                mockAccount: {
-                    username: "",
-                    password: ""
-                }
             }
         },
         mounted() {
             if(!this.authenticated) {
                 this.$router.replace({ name: "Login" });
-                this.mockAccount.username = localStorage.name
-                this.mockAccount.password = localStorage.password
+
             }
         },
         methods: {
@@ -37,6 +33,7 @@
             }
         }
     }
+    
 </script>
 
 <style>

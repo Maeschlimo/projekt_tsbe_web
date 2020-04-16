@@ -2,13 +2,14 @@
     <div id="login">
         <h1>Login</h1>
         <input type="text" name="username" v-model="input.username" placeholder="Username" />
-        <input type="password" name="password" v-model="input.password" placeholder="Password" />
+        <input type="password" name="password" v-model="input.password" placeholder="Password" @keyup.enter="login()"/>
         <button type="button" v-on:click="login()">Login</button>
         <router-link to="/register" class="btn btn-link">Register</router-link>
     </div>
 </template>
 
 <script>
+import { integer } from 'vee-validate/dist/rules';
     export default {
         name: 'Login',
         data() {
@@ -16,25 +17,44 @@
                 input: {
                     username: "",
                     password: ""
-                }
+                },
+                credentials:[],
+                isValid : false,
+                userid: integer
             }
         },
         methods: {
             login() {
                 if(this.input.username != "" && this.input.password != "") {
-                    if(this.input.username == this.$parent.mockAccount.username && this.input.password == this.$parent.mockAccount.password) {
-                        this.$emit("authenticated", true);
-                        this.$router.replace({ name: "secure" });
-                    } else {
-                        console.log("The username and / or password is incorrect");
+                    
+                    for (let index = 0; index < this.credentials.length; index++) {
+                        if(this.input.username == this.credentials[index].name && this.input.password == this.credentials[index].password) {
+                            this.isValid = true;
+                            this.userid=index;
+                            this.$emit("authenticated", true);
+                            this.$router.replace({ name: "secure" });
+                        } 
+                    }
+                    if (this.isValid===false){
+                        alert("The username and / or password is incorrect"); 
                     }
                 } else {
-                    console.log("A username and password must be present");
+                alert("A username and password must be present");
+                }
+            }
+        },
+        created () {
+            const credentials = JSON.parse(localStorage.getItem('credentials'))
+            if (credentials !== null) {
+                for (const cr of credentials) {
+                    this.credentials.push(cr)
                 }
             }
         }
     }
 </script>
+
+export.object userid
 
 <style scoped>
     #login {
