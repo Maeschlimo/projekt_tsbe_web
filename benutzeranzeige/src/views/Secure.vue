@@ -4,6 +4,9 @@
         <p>
             This is a secure area
         </p>
+        <li>{{vorname}}</li>
+        <li>{{name}}</li>
+        <li>{{email}}</li>
     </div>
 </template>
 
@@ -11,7 +14,12 @@
     export default {
         name: 'secure',
         data() {
-            return {};
+            
+            return {
+                name: localStorage.name,
+                vorname: localStorage.vorname,
+                email: localStorage.email
+            };
         }
     }
 </script>

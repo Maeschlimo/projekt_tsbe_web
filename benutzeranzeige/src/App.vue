@@ -16,14 +16,16 @@
             return {
                 authenticated: false,
                 mockAccount: {
-                    username: "user",
-                    password: "1234"
+                    username: "",
+                    password: ""
                 }
             }
         },
         mounted() {
             if(!this.authenticated) {
                 this.$router.replace({ name: "Login" });
+                this.mockAccount.username = localStorage.name
+                this.mockAccount.password = localStorage.password
             }
         },
         methods: {
