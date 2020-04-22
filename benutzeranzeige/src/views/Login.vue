@@ -26,9 +26,7 @@
                 },
                 credentials:[],
                 isValid : false,
-                uid: 5
-                //uuid
-                
+                uid: 5              
                 
             }
         },
@@ -42,7 +40,7 @@
                 if(this.input.username != "" && this.input.password != "") {
                     
                     for (let index = 0; index < this.credentials.length; index++) {
-                        if(this.input.username == this.credentials[index].name && this.input.password == this.credentials[index].password) {
+                        if(this.input.username == this.credentials[index].username && this.input.password == this.credentials[index].password) {
                             this.isValid = true;
                             this.$emit("authenticated", true); 
                             this.$router.replace({ name: "secure", params:{ index } });
@@ -65,7 +63,6 @@
                     this.credentials.push(cr)
                 }
             }
-            
         }, 
  /*       getUID(){
             console.log(this.data().uid);

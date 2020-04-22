@@ -66,6 +66,7 @@ export default {
   data () {
     return {
       credentials: [],
+      cred:[],
       vorname:'',
       name:'',
       email: '',
@@ -76,19 +77,32 @@ export default {
     register () {
       if (confirm (`Hallo ${this.vorname} Du hast dich erfolgreich registriert!`)){
         this.$router.replace({ name: "Login" })
-        this.credentials.push({vorname: this.vorname, name: this.name, email: this.email, password: this.password }),
-        localStorage.setItem('credentials', JSON.stringify(this.credentials))    
-      }
-    },
-  },
-  created () {
-    const credentials = JSON.parse(localStorage.getItem('credentials'))
-    if (credentials !== null) {
-      for (const cr of credentials) {
-        this.credentials.push(cr)
+        this.credentials.push({username: this.stringifyUsername, password: this.password }),
+        this.cred.push({Vorname: this.vorname, Name: this.name, Email: this.email}),
+        localStorage.setItem('credentials', JSON.stringify(this.credentials))
+        localStorage.setItem('cred_show', JSON.stringify(this.cred))    
       }
     }
-  }
+  },
+  computed:{
+    stringifyUsername() {
+      return (`${this.vorname}${this.name}`).toLowerCase()
+    }
+  },
+   created () {
+     const credentials = JSON.parse(localStorage.getItem('credentials'))
+      if (credentials !== null) {
+        for (const cr of credentials) {
+          this.credentials.push(cr)
+        }
+     } 
+     const cred = JSON.parse(localStorage.getItem('cred_show'))
+      if (cred !== null) {
+        for (const cr of cred) {
+          this.cred.push(cr)
+        }
+      } 
+   }
 }
 </script>
 

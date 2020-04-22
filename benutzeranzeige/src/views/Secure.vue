@@ -27,10 +27,9 @@
 
             }
         },
- 
-        
+
         created () {
-        const credentials = JSON.parse(localStorage.getItem('credentials'))
+        const credentials = JSON.parse(localStorage.getItem('cred_show'))
             if (credentials !== null) {
             for (const cr of credentials) {
                 this.credentials.push(cr)
