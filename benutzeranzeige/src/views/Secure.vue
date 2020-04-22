@@ -5,13 +5,11 @@
             This is a secure area
         </p>
 
-        <div v-for="(value, name) in this.credentials[0]" v-bind:key="value">
+        <div v-for="(value, name) in this.credentials[$attrs.index]" v-bind:key="value">
             {{ name }}: {{ value }}
         </div>
 
-        <li>{{this.benutzerid}}</li>
-        
-        
+        <li>{{$attrs.index}}</li>     
     
         
     </div>
@@ -20,34 +18,25 @@
 <script>
 
 
-//import { integer } from 'vee-validate/dist/rules';
-
-import Login from '../views/Login.vue'
-//this.benutzerid = Login.methods.login()
-
-
-
-//import uid from '../views/Login.vue'
-
-
     export default {
         name: 'secure',
         data() { 
             return {
                 credentials: [],
-                benutzerid: Login.data().uid
-                              
+                benutzerid: Number
+
             }
         },
-    created () {
-    const credentials = JSON.parse(localStorage.getItem('credentials'))
-    if (credentials !== null) {
-      for (const cr of credentials) {
-        this.credentials.push(cr)
+ 
         
-      }
-    }
-  }
+        created () {
+        const credentials = JSON.parse(localStorage.getItem('credentials'))
+            if (credentials !== null) {
+            for (const cr of credentials) {
+                this.credentials.push(cr)
+            }
+            }
+    } 
 }
 
 </script>

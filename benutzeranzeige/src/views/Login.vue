@@ -13,6 +13,9 @@
 
 
 //import Login from "../views/Login.vue"
+//import secure from "../views/Secure.vue";
+
+
     export default {
         name: 'Login',
         data() {
@@ -23,35 +26,26 @@
                 },
                 credentials:[],
                 isValid : false,
-                uid: 10,
+                uid: 5
                 //uuid
                 
                 
             }
         },
         methods: {
+
             setuid(userid) {
                 return userid;
             },
             login() {
-
-                var vm = this;
-                //var bla = vm.uid 
 
                 if(this.input.username != "" && this.input.password != "") {
                     
                     for (let index = 0; index < this.credentials.length; index++) {
                         if(this.input.username == this.credentials[index].name && this.input.password == this.credentials[index].password) {
                             this.isValid = true;
-                            this.$emit("authenticated", true);
-                            this.$router.replace({ name: "secure" });
-                            this.$data.uid = index;
-                            vm.uid = index;
-                            
-                            //Login.data().uid="1";
-                            //uid = "10";
-                            //return uid;
-                            //this.setuid();
+                            this.$emit("authenticated", true); 
+                            this.$router.replace({ name: "secure", params:{ index } });
                         } 
                     }
                     if (this.isValid===false){

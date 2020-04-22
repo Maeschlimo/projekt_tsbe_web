@@ -33,7 +33,8 @@ Vue.use(VueRouter)
   {
       path: "/secure",
       name: "secure",
-      component: () => import(/* webpackChunkName: "login" */ '../views/Secure.vue')
+      component: () => import(/* webpackChunkName: "login" */ '../views/Secure.vue'),
+      props: true
   },
   {
     path: "/contacts",
