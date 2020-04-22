@@ -36,6 +36,11 @@ Vue.use(VueRouter)
       component: () => import(/* webpackChunkName: "login" */ '../views/Secure.vue')
   },
   {
+    path: "/contacts",
+    name: "contacts",
+    component: () => import(/* webpackChunkName: "login" */ '../views/Contacts.vue')
+},
+  {
   path: '/register',
   name: 'Register',
   component: () => import(/* webpackChunkName: "about" */ '../views/Register.vue')

@@ -9,7 +9,10 @@
 </template>
 
 <script>
-import { integer } from 'vee-validate/dist/rules';
+
+
+
+//import Login from "../views/Login.vue"
     export default {
         name: 'Login',
         data() {
@@ -20,19 +23,35 @@ import { integer } from 'vee-validate/dist/rules';
                 },
                 credentials:[],
                 isValid : false,
-                userid: integer
+                uid: 10,
+                //uuid
+                
+                
             }
         },
         methods: {
+            setuid(userid) {
+                return userid;
+            },
             login() {
+
+                var vm = this;
+                //var bla = vm.uid 
+
                 if(this.input.username != "" && this.input.password != "") {
                     
                     for (let index = 0; index < this.credentials.length; index++) {
                         if(this.input.username == this.credentials[index].name && this.input.password == this.credentials[index].password) {
                             this.isValid = true;
-                            this.userid=index;
                             this.$emit("authenticated", true);
                             this.$router.replace({ name: "secure" });
+                            this.$data.uid = index;
+                            vm.uid = index;
+                            
+                            //Login.data().uid="1";
+                            //uid = "10";
+                            //return uid;
+                            //this.setuid();
                         } 
                     }
                     if (this.isValid===false){
@@ -41,7 +60,9 @@ import { integer } from 'vee-validate/dist/rules';
                 } else {
                 alert("A username and password must be present");
                 }
+                
             }
+            
         },
         created () {
             const credentials = JSON.parse(localStorage.getItem('credentials'))
@@ -50,7 +71,14 @@ import { integer } from 'vee-validate/dist/rules';
                     this.credentials.push(cr)
                 }
             }
-        }
+            
+        }, 
+ /*       getUID(){
+            console.log(this.data().uid);
+            return this.data().uid
+            
+            
+        }*/
     }
 </script>
 
