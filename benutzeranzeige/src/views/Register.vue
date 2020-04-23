@@ -37,11 +37,33 @@
         placeholder="Passwort"/>
         <br>
         <span>{{ errors[0] }}</span>
-        </validation-provider>  
+      </validation-provider>  
+      <br>
+      <validation-provider rules="required" v-slot="{ errors }">
+        <input type="department"
+        name="department"
+        v-model="department"
+        placeholder="Firmen - Abteilung"/>
+        <br>
+        <span>{{ errors[0] }}</span>
+      </validation-provider>  
+      <br>
+      <validation-provider rules="required" v-slot="{ errors }">
+        <input type="tel"
+        name="phone"
+        v-model="phone"
+        pattern="[0-9]{3} [0-9]{3} [0-9]{2} [0-9]{2}"
+        placeholder="Telefonnummer (123 456 78 90)"/>
+        <br>
+        <span>{{ errors[0] }}</span>
+      </validation-provider>  
       <br>
       <button type="submit"> Register </button>
+      <br>
     </form>
     </ValidationObserver>
+    <br>
+    <router-link to="/" class="btn btn-link">Zurück</router-link>
   </div>
 </template>
 
@@ -70,25 +92,31 @@ export default {
       vorname:'',
       name:'',
       email: '',
-      password: ''
+      password: '',
+      department: '',
+      phone: ''
     }
   },
+
   methods: {
+
     register () {
-      if (confirm (`Hallo ${this.vorname} Du hast dich erfolgreich registriert!`)){
+      if (confirm (`Du hast dich erfolgreich registriert! Dein Benutzername lautet: ${this.stringifyUsername}`)){
         this.$router.replace({ name: "Login" })
         this.credentials.push({username: this.stringifyUsername, password: this.password }),
-        this.cred.push({Vorname: this.vorname, Name: this.name, Email: this.email}),
+        this.cred.push({Vorname: this.vorname, Name: this.name, Email: this.email, Abteilung: this.department, Telefonnummer: this.phone}),
         localStorage.setItem('credentials', JSON.stringify(this.credentials))
-        localStorage.setItem('cred_show', JSON.stringify(this.cred))    
+        localStorage.setItem('cred_show', JSON.stringify(this.cred))
+          
       }
-    }
+    },
   },
-  computed:{
+    computed:{
     stringifyUsername() {
       return (`${this.vorname}${this.name}`).toLowerCase()
     }
   },
+
    created () {
      const credentials = JSON.parse(localStorage.getItem('credentials'))
       if (credentials !== null) {

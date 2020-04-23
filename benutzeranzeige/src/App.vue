@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link v-if="authenticated" to="/home" replace> Home |</router-link > 
-      <router-link v-if="authenticated" to="/contacts"  replace> Kontakte |</router-link> 
-      <router-link v-if="authenticated" to="/secure"  replace> Secure |</router-link> 
+      <router-link v-if="authenticated" to="/secure"  replace> Adressbuch |</router-link> 
       <router-link v-if="authenticated" to="/login" v-on:click.native="logout()" replace> Logout </router-link>
     </div>
     <router-view @authenticated="setAuthenticated" />
@@ -11,6 +9,7 @@
 </template>
 
 <script>
+
     export default {
         name: 'App',
         data() {
@@ -33,8 +32,10 @@
             }
         }
     }
-    
+
 </script>
+
+
 
 <style>
 #app {

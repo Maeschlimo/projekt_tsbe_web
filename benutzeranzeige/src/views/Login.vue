@@ -9,13 +9,6 @@
 </template>
 
 <script>
-
-
-
-//import Login from "../views/Login.vue"
-//import secure from "../views/Secure.vue";
-
-
     export default {
         name: 'Login',
         data() {
@@ -25,16 +18,10 @@
                     password: ""
                 },
                 credentials:[],
-                isValid : false,
-                uid: 5              
-                
+                isValid : false,      
             }
         },
         methods: {
-
-            setuid(userid) {
-                return userid;
-            },
             login() {
 
                 if(this.input.username != "" && this.input.password != "") {
@@ -63,13 +50,13 @@
                     this.credentials.push(cr)
                 }
             }
+            // const cred_shows = JSON.parse(localStorage.getItem('cred_show'))
+            // if (cred_shows !== null) {
+            //     for (const cs of cred_shows) {
+            //         this.cred_shows.push(cs)
+            //     }
+            // }
         }, 
- /*       getUID(){
-            console.log(this.data().uid);
-            return this.data().uid
-            
-            
-        }*/
     }
 </script>
 
