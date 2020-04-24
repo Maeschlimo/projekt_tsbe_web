@@ -124,12 +124,7 @@ export default {
           this.credentials.push(cr)
         }
      } 
-     const cred = JSON.parse(localStorage.getItem('cred_show'))
-      if (cred !== null) {
-        for (const cr of cred) {
-          this.cred.push(cr)
-        }
-      } 
+
    }
 }
 </script>
