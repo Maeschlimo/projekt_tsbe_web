@@ -99,7 +99,7 @@ export default {
   },
 
   methods: {
-
+    //Registrieren und in Local Storage speichern
     register () {
       if (confirm (`Du hast dich erfolgreich registriert! Dein Benutzername lautet: ${this.stringifyUsername}`)){
         this.$router.replace({ name: "Login" })
