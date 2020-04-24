@@ -1,5 +1,6 @@
-# benutzeranzeige
-
+# KontaktInfo-Sharing
+App um Kontakte anzuzeigen
+Vue.js
 ## Project setup
 ```
 npm install
