@@ -1,5 +1,5 @@
 # KontaktInfo-Sharing
 App um Kontktdaten zu Teilen
 
-##TSBE WEB
+## TSBE WEB
 Martin Lauener & Nicola Staub
