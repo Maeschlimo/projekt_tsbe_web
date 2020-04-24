@@ -50,12 +50,6 @@
                     this.credentials.push(cr)
                 }
             }
-            // const cred_shows = JSON.parse(localStorage.getItem('cred_show'))
-            // if (cred_shows !== null) {
-            //     for (const cs of cred_shows) {
-            //         this.cred_shows.push(cs)
-            //     }
-            // }
         }, 
     }
 </script>
